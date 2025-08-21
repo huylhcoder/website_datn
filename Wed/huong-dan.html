@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hướng dẫn vận hành máy Frit – TechFlow</title>
+
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #121933;
+      --card: #0e1530;
+      --text: #e6eaf6;
+      --muted: #a9b1c7;
+      --brand: #6aa9ff;
+      --brand-2: #8ef0ff;
+      --accent: #24d39d;
+      --danger: #ff6b6b;
+
+      --radius: 16px;
+      --shadow: 0 8px 30px rgba(0,0,0,.35);
+      --shadow-soft: 0 6px 18px rgba(0,0,0,.25);
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.6;
+      padding: 24px;
+    }
+
+    header {
+      max-width: 1000px;
+      margin: 0 auto 28px auto;
+      padding: 24px 22px;
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,0));
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-soft);
+    }
+
+    h1 { margin: 0 0 14px 0; }
+
+    /* Timeline */
+    .timeline { max-width: 1000px; margin: 0 auto; position: relative; }
+
+    .step {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: 14px;
+      margin: 12px 0 18px 0;
+      align-items: start;
+    }
+
+    .step .number {
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      color: var(--text);
+      background: radial-gradient(120% 120% at 30% 30%, var(--brand-2), var(--brand));
+    }
+
+    .step .content {
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: calc(var(--radius) - 4px);
+      padding: 16px 18px;
+      box-shadow: var(--shadow);
+    }
+
+    /* details hiển thị luôn */
+    .step .details {
+      margin-top: 10px;
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .btn {
+  display: inline-block;
+  padding: 10px 18px;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  color: #fff;
+  font-weight: 600;
+  border-radius: 8px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,.25);
+  transition: all 0.25s ease;
+  }
+
+  /* Hover */
+  .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0,0,0,.35);
+    background: linear-gradient(135deg, var(--brand-2), var(--brand));
+  }
+
+  /* Khi nhấn giữ */
+  .btn:active {
+    transform: translateY(1px) scale(0.97);
+    box-shadow: 0 3px 8px rgba(0,0,0,.3);
+  }
+
+  .details img {
+  max-width: 40%;   /* co theo chiều rộng khung chứa */
+  height: auto;      /* giữ nguyên tỉ lệ */
+  border-radius: 6px; /* bo góc */
+  margin: 8px 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,.15); /* bóng nhẹ */
+  display: block;   /* tránh lệch dòng */
+}
+
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>⚙️ Hướng dẫn vận hành máy Frit</h1>
+    <a href="indexx.html" class="btn">← Quay lại Trang chính</a>
+  </header>
+
+  <section class="timeline">
+    <div class="step">
+      <div class="number">1</div>
+      <div class="content">
+        <div class="summary">
+          Bật nguồn, kiểm tra đèn cảm biến sáng và kết nối COM ở PC
+        </div>
+        <div class="details">
+           <img src="COM.jpg" alt="Kết nối COM">
+          - Kiểm tra dây nguồn đã cắm chặt.<br>
+          - Đèn báo nguồn sáng.<br>
+          - Đèn Cảm biến sáng.<br>
+          - Cài đặt COM. "Trạng thái: Đã Kết Nối".
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="number">2</div>
+      <div class="content">
+        <div class="summary">Chọn khuôn hoạt động</div>
+        <div class="details">
+          <img src="ChonKhuon.jpg" alt="Chọn khuôn">
+          - Qua trang chương trình tự động nhấn "Mở" để chọn khuôn hoạt động.<br>
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="number">3</div>
+      <div class="content">
+        <div class="summary">Nhấn Start ở chương trình tự động để bắt đầu → hệ thống hoạt động</div>
+        <div class="details">
+          <img src="StartStopPausee.png" alt="Start">
+          - Nhấn Start hệ thống hoạt động theo file khuôn đã chọn.<br>
+          - Trong quá trình chạy có thể Pause/Resume và Stop.
+        </div>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="number">4</div>
+      <div class="content">
+        <div class="summary">Sau khi hoàn tất, lấy khuôn ra khỏi máy, kiểm tra sản phẩm, kết thúc quá trình</div>
+        <div class="details">
+           <img src="donerun.png" alt="Đã hoàn thành">
+          - Sau khi hoàn tất, xuất hiện hộp thoại báo "Đã hoàn thành".<br>
+          - Nhấn "OK" để xác nhận.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="gallery">
+    <h2>Hình ảnh minh họa</h2>
+    <img src="images/step1.jpg" alt="Bật nguồn máy">
+    <img src="images/step2.jpg" alt="Chọn khuôn">
+  </section>
+</body>
+</html>

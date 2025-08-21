@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>TechFlow – Giải pháp Tự động hóa & Máy sản xuất Frit bán tự động</title>
+<meta name="description" content="TechFlow cung cấp giải pháp tự động hóa, tích hợp PLC/SCADA/IIoT, chế tạo máy và chuyên sâu máy sản xuất frit bán tự động." />
+<style>
+
+
+/* Logo chung */
+.logo-img {
+  height: 100px;
+  width: auto;
+  display: block;
+}
+
+/* Logo trong header có glow xanh */
+header .logo-img {
+  filter: drop-shadow(0 0 6px #00f2ff) drop-shadow(0 0 12px #00f2ff);
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+
+header .logo-img:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 10px #00f2ff) drop-shadow(0 0 20px #00f2ff);
+}
+
+/* Logo trong footer giữ trắng, không glow */
+footer .logo-img {
+  filter: brightness(1);
+}
+
+/* Cơ bản cho card highlight */
+.card.highlight {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+/* Tiêu đề riêng màu */
+.card.guide .title {
+  color: #2563eb; /* xanh */
+}
+.card.error .title {
+  color: #dc2626; /* đỏ */
+}
+
+/* Hover hiệu ứng phát sáng */
+.card.guide:hover {
+  /* background: #ebf5ff;  */
+  border: 2px solid #2563eb;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+}
+.card.error:hover {
+  /* background: #fee2e2;  */
+  border: 2px solid #dc2626;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.4);
+}
+
+
+
+
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(11,13,15,.7);
+  backdrop-filter: blur(10px);
+  border-bottom: var(--bd);
+  transition: transform 0.3s ease; 
+}
+
+
+  :root{
+    --bg:#0b0d0f; --card:#12161b; --muted:#9099a6; --txt:#e9eef5; --acc:#2dd4bf; --acc-2:#60a5fa;
+    --bd:1px solid rgba(255,255,255,.08); --radius:18px; --shadow:0 10px 30px rgba(0,0,0,.25);
+    --mx:1200px;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--txt);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;line-height:1.6}
+  a{color:var(--acc);text-decoration:none}
+  img{max-width:100%;display:block}
+  .container{max-width:var(--mx);margin-inline:auto;padding:0 20px}
+  header{
+    position:sticky;top:0;z-index:20;background:rgba(11,13,15,.7);backdrop-filter:blur(10px);
+    border-bottom:var(--bd)
+  }
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+  .brand{display:flex;gap:10px;align-items:center;font-weight:700}
+  .brand .logo{
+    width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--acc),var(--acc-2));
+    display:grid;place-items:center;color:#0b0d0f;font-weight:800
+  }
+  .nav a.btn{padding:10px 16px;border-radius:12px;background:var(--acc);color:#0b0d0f;font-weight:700}
+  .hero{
+    padding:72px 0 40px;background:
+    radial-gradient(1000px 400px at 20% -10%,rgba(45,212,191,.15),transparent 60%),
+    radial-gradient(800px 300px at 80% -10%,rgba(96,165,250,.12),transparent 60%);
+    border-bottom:var(--bd)
+  }
+  .hero .grid{display:grid;gap:28px;grid-template-columns:1.2fr .8fr}
+  .hero h1{font-size:clamp(28px,4vw,46px);line-height:1.15;margin:0 0 14px}
+  .sub{color:var(--muted);max-width:65ch}
+  .hero .cta{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+  .btn{
+    padding:12px 18px;border-radius:14px;border:var(--bd);color:var(--txt);background:transparent;cursor:pointer;
+    transition:.2s; font-weight:600
+  }
+  .btn.primary{background:var(--acc);color:#0b0d0f;border-color:transparent}
+  .btn:hover{transform:translateY(-1px);box-shadow:var(--shadow)}
+  .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border-radius:999px;border:var(--bd);color:var(--muted);font-size:13px}
+  .section{padding:56px 0;border-bottom:var(--bd)}
+  .section h2{font-size:clamp(22px,3.2vw,34px);margin:0 0 8px}
+  .section p.lead{color:var(--muted);margin:0 0 20px}
+  .cards{display:grid;gap:16px;grid-template-columns:repeat(12,1fr)}
+  .card{
+    grid-column:span 12;background:var(--card);border:var(--bd);border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);
+    display:flex;flex-direction:column;gap:10px
+  }
+  .card .title{font-weight:700}
+  .card .desc{color:var(--muted)}
+  .pill{display:inline-block;background:rgba(45,212,191,.1);color:var(--acc);padding:6px 10px;border-radius:999px;font-size:12px;border:1px solid rgba(45,212,191,.25)}
+  .kpi{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:18px}
+  .kpi .item{background:var(--card);border:var(--bd);border-radius:14px;padding:14px;text-align:center}
+  .kpi .item b{font-size:20px;display:block}
+  /* grid responsive */
+  @media(min-width:720px){
+    .card.sm-6{grid-column:span 6}
+    .card.sm-4{grid-column:span 4}
+  }
+  @media(min-width:980px){
+    .card.md-3{grid-column:span 3}
+    .card.md-4{grid-column:span 4}
+    .card.md-6{grid-column:span 6}
+  }
+  /* Quy trình (timeline) */
+  .timeline{display:grid;gap:14px;margin-top:12px}
+  .step{display:grid;gap:8px;grid-template-columns:auto 1fr;align-items:start}
+  .dot{width:14px;height:14px;border-radius:50%;background:linear-gradient(135deg,var(--acc),var(--acc-2));margin-top:6px}
+  .step .t{font-weight:700}
+  .muted{color:var(--muted)}
+  /* Bảng thông số */
+  .spec{width:100%;border-collapse:collapse;margin-top:10px}
+  .spec th,.spec td{border:var(--bd);padding:10px 12px}
+  .spec th{background:#0e1318;text-align:left}
+  .spec tr:nth-child(even){background:#0f1419}
+  /* FAQ */
+  details{background:var(--card);border:var(--bd);border-radius:14px;padding:12px}
+  details+details{margin-top:10px}
+  summary{cursor:pointer;font-weight:600}
+  /* Footer */
+  footer{padding:40px 0}
+  .footgrid{display:grid;gap:14px;grid-template-columns:1fr}
+  @media(min-width:880px){ .footgrid{grid-template-columns:2fr 1fr 1fr}}
+  .copyright{color:var(--muted);font-size:14px;margin-top:12px;border-top:var(--bd);padding-top:12px; text-align: center}
+  /* Form liên hệ */
+  form{display:grid;gap:10px}
+  input,textarea{
+    width:100%;padding:12px;border-radius:12px;border:var(--bd);background:#0f1419;color:var(--txt)
+  }
+
+
+</style>
+</head>
+<body>
+
+
+
+<header>
+<div class="container nav">
+     <a href="indexx.html">
+        <div class="brand">
+        <img src="LogoTechFlow.png" alt="TechFlow Logo" class="logo-img">
+        </div>
+     </a>
+    <a class="btn btn-sm btn-primary btn primary" href="#lien-he">Nhận tư vấn</a>
+  </div>
+</header>
+
+
+<section class="hero">
+  <div class="container">
+    <div class="grid">
+      <div>
+        <span class="badge">Tư vấn – Tích hợp – Chế tạo máy</span>
+        <h1>Giải pháp tự động hóa &amp; <span style="background:linear-gradient(135deg,var(--acc),var(--acc-2));-webkit-background-clip:text;background-clip:text;color:transparent;">Máy sản xuất Frit bán tự động</span></h1>
+        <p class="sub">Từ khảo sát, thiết kế điều khiển (MCU), chế tạo cơ khí – điện, đến chạy thử &amp; chuyển giao. Ghi vết dữ liệu sản xuất, tối ưu năng suất, giảm lỗi thủ công.</p>
+        <div class="cta">
+          <a href="#giai-phap" class="btn primary">Xem giải pháp</a>
+          <a href="#frit" class="btn primary">Chuyên mục: Máy Frit</a>
+        </div>
+        <div class="kpi">
+          <div class="item"><b>24/7</b><span class="muted">Hỗ trợ kỹ thuật</span></div>
+          <div class="item"><b>±0.5%</b><span class="muted">Mục tiêu sai số định lượng</span></div>
+          <div class="item"><b>IIoT</b><span class="muted">Ghi vết lô &amp; giám sát</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="title">Năng lực cốt lõi</div>
+          <div class="tagrow">
+            <!-- <span class="pill">PLC Siemens S7-1200</span> -->
+            <span class="pill">MCU</span>
+            <span class="pill">Stepper/TB6600</span>
+            <span class="pill">WinForms/c#</span>
+            <span class="pill">HDLC</span>
+            <span class="pill">IIoT</span>
+          </div>
+          <p class="desc">Kinh nghiệm đồng bộ nhiều trục, tích hợp cảm biến, giao tiếp PC – MCU, logic Pause/Resume/Stop, và ghi nhận phản hồi máy theo sự kiện.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="gioi-thieu" class="section">
+  <div class="container">
+    <h2>Giới thiệu TechFlow</h2>
+    <p class="lead">TechFlow là đơn vị tích hợp hệ thống và chế tạo máy, tập trung vào tính ổn định, an toàn và khả năng mở rộng. Chúng tôi chuẩn hóa quy trình triển khai để rút ngắn thời gian chạy thực tế.</p>
+    <div class="timeline">
+      <div class="step">
+        <div class="dot"></div>
+        <div><div class="t">1 Khảo sát &amp; yêu cầu</div><div class="muted">Đo đạc, đánh giá rủi ro, xác định KPI (năng suất, sai số, thời gian chu kỳ).</div></div>
+      </div>
+      <div class="step">
+        <div class="dot"></div>
+        <div><div class="t">2 Thiết kế điều khiển &amp; cơ khí</div><div class="muted">Sơ đồ điện, chọn driver/động cơ/cảm biến, lập trình MCU &amp; xây dựng giao diện người dùng.</div></div>
+      </div>
+      <div class="step">
+        <div class="dot"></div>
+        <div><div class="t">3 Lắp đặt &amp; tích hợp</div><div class="muted">Đấu nối, đi dây, tích hợp cơ–điện–phần mềm, đảm bảo an toàn máy.</div></div>
+      </div>
+      <div class="step">
+        <div class="dot"></div>
+        <div><div class="t">4 Chạy thử &amp; tối ưu</div><div class="muted">Hiệu chỉnh hệ thống, tốc độ–gia tốc trục, chống rung/dao động.</div></div>
+      </div>
+      <div class="step">
+        <div class="dot"></div>
+        <div><div class="t">5 Bảo hành &amp; mở rộng</div><div class="muted">Nâng cấp thêm trục, thêm cảm biến, tích hợp xử lý ảnh đánh giá chất lượng mẻ.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section id="giai-phap" class="section">
+  <div class="container">
+    <h2>Giải pháp công nghệ tự động hóa</h2>
+    <p class="lead">Tập trung vào hiệu quả, độ tin cậy và khả năng giám sát theo thời gian thực.</p>
+    <div class="cards">
+      <article class="card sm-6 md-3">
+        <div class="title">Điều khiển dây chuyền</div>
+        <p class="desc">MCU, đồng bộ nhiều trục bước/servo, định vị, homing, interlock an toàn.</p>
+      </article>
+      <article class="card sm-6 md-3">
+        <div class="title">Giám sát &amp; dữ liệu</div>
+        <p class="desc">Thu thập dữ liệu , dashboard, cảnh báo, tùy chọn IoT.</p>
+      </article>
+      <article class="card sm-6 md-3">
+        <div class="title">Chế tạo &amp; phát triển</div>
+        <p class="desc">Thiết kế – gia công khung, nâng cấp máy cũ, tối ưu cơ điện và thao tác.</p>
+      </article>
+      <article class="card sm-6 md-3">
+        <div class="title">An toàn &amp; tiêu chuẩn</div>
+        <p class="desc">Bố trí E-Stop, che chắn, tiêu chuẩn cảnh báo, Start, Stop &amp; Resum.</p>
+      </article>
+
+      <article class="card sm-6 md-6">
+        <div class="title">Case study: Hệ hút – đẩy bột</div>
+        <p class="desc">PC WinForms điều phối trục X/Y/Z &amp; bơm theo giao thức HDLC, phản hồi “Done” tuần tự, hỗ trợ Pause/Resume/Stop.</p>
+      </article>
+      <article class="card sm-6 md-6">
+        <div class="title">Case study: Đồng bộ 3 động cơ bước</div>
+        <p class="desc">Arduino + TB6600, vi bước 2A(1 xung = 0.9 độ), điều khiển đồng thời hoặc từng trục, homing và giới hạn hành trình.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="frit" class="section">
+  <div class="container">
+    <h2>Máy sản xuất Frit bán tự động</h2>
+    <p class="lead">Giải pháp chuyên sâu cho dây chuyền frit: ổn định chất lượng mẻ, giảm sai lệch thao tác, ghi vết dữ liệu để truy xuất nguồn gốc.</p> 
+    <div class="cards">
+
+        <article class="card sm-6 highlight guide" onclick="window.location.href='huong-dan.html'" style="cursor:pointer;">
+            <div class="title">⚙️ Hướng dẫn vận hành máy (Click xem chi tiết)</div>
+            <div class="timeline">
+                <div class="step">
+                    <div class="number">1</div>
+                <div class="content">Bật nguồn, kiểm tra cảm biến và kết nối COM ở PC</div>
+            </div>
+            <div class="step">
+                <div class="number">2</div>
+                <div class="content">Chọn khuôn hoạt động</div>
+            </div>
+            <div class="step">
+                <div class="number">3</div>
+                <div class="content">Nhấn Start ở PC để bắt đầu → hệ thống hoạt động</div>
+            </div>
+            <div class="step">
+                <div class="number">4</div>
+                <div class="content">Sau khi hoàn tất, lấy khuôn ra khỏi máy, kiểm tra sản phẩm, kết thúc quá trình</div>
+            </div>
+        </div>
+    </article>
+    <article class="card sm-6 highlight error" onclick="window.location.href='loi-thuong-gap.html'" style="cursor:pointer;">
+        <div class="title">⚠️ Các lỗi thường gặp (Click xem chi tiết)</div>
+        <ul class="muted" style="margin:0 0 0 18px;">
+            <li>Lỗi kết nối COM</li>
+            <li>Lỗi nhập liệu</li>
+            <li>Lỗi mở file</li>
+            <li>...</li>  
+        </ul>
+    </article>
+
+
+      <article class="card sm-6">
+      <div class="title">Sơ đồ khối điều khiển</div>
+        <p class="muted">Khối nguồn → Khối điều khiển → Khối truyền động</p>
+        <div class="tagrow">
+          <span class="pill">Arduino Mega 2560</span>
+          <span class="pill">TB6600</span>
+          <span class="pill">Steper 42</span>
+          <span class="pill">H22A3</span>
+         
+        </div>
+      </article>
+      <article class="card sm-6">
+        <div class="title">Ưu điểm chính</div>
+        <ul class="muted" style="margin:0 0 0 18px;">
+          <li>Định lượng ±0.5% (mục tiêu) &amp; chu kỳ ổn định</li>
+          <li>Giao diện thân thiện người dùng</li>
+          <li>Ghi vết dữ liệu (thời gian, thông số khay)</li>
+          <li>Phần cứng ổn định đảm bảo hoạt động lâu dài</li>
+        </ul>
+      </article>
+      <article class="card sm-6">
+        <div class="title">Thông số kỹ thuật (tham khảo)</div>
+        <table class="spec">
+          <tr><th>Hạng mục</th><th>Giá trị</th></tr>
+          <tr><td>Năng suất</td><td>27-35 viên/phút(tùy cấu hình)</td></tr>
+          <tr><td>Số trục</td><td>3 trục</td></tr>
+          <tr><td>Điều khiển</td><td>Arduino Mega 2560</td></tr>
+          <tr><td>Giao tiếp</td><td> UART theo khung chuyền HDLC với PC</td></tr>
+          <tr><td>Điện áp</td><td>24V DC</td></tr>
+          <tr><td>An toàn</td><td>E-Stop, hệ thống cảnh báo ở PC</td></tr>
+        </table>
+      </article>
+      <article class="card sm-6">
+        <div class="title">FAQ nhanh</div>
+        <details>
+          <summary>Máy có lưu dữ liệu theo mẻ?</summary>
+          <p class="muted">Có. Lưu thời gian, thông số khay, và trạng thái.</p>
+        </details>
+        <details>
+          <summary>Hỗ trợ Pause/Resume/Stop?</summary>
+          <p class="muted">Có. Logic an toàn, dừng mềm, và tiếp tục theo trạng thái trước đó.</p>
+        </details>
+        <details>
+          <summary>Tùy biến theo khay frit?</summary>
+          <p class="muted">Hỗ trợ thay đổi thông số cho từng khay, giới hạn tham số để đảm bảo an toàn &amp; chất lượng.</p>
+        </details>
+      </article>
+    </div>
+
+    <div class="card" style="margin-top:14px">
+      <div class="title">Quy trình triển khai máy Frit</div>
+      <div class="timeline">
+        <div class="step"><div class="dot"></div><div><div class="t">Khảo sát</div><div class="muted">Tìm hiểu chuyên sâu và đưa ra phương án tối ưu nhất.</div></div></div>
+        <div class="step"><div class="dot"></div><div><div class="t">Thiết kế chi tiết</div><div class="muted">Sơ đồ điện, mạch PCB, chọn cảm biến – driver, thiết kế giao diện Winform.</div></div></div>
+        <div class="step"><div class="dot"></div><div><div class="t">Lắp đặt &amp; chạy thử</div><div class="muted">Hiệu chỉnh, kiểm tra an toàn, chạy nghiệm thu.</div></div></div>
+        <div class="step"><div class="dot"></div><div><div class="t">Chuyển giao</div><div class="muted">Hướng dẫn vận hành – bảo trì.</div></div></div>
+      </div>
+      <div class="cta" style="margin-top:12px">
+          <a href="#lien-he" class="btn primary">Yêu cầu demo/báo giá</a>
+          <a href="#" class="btn primary">Tải tài liệu(PDF)</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="lien-he" class="section">
+  <div class="container">
+    <h2>Liên hệ</h2>
+    <p class="lead">Cho chúng tôi biết nhu cầu của bạn. Đội ngũ TechFlow sẽ phản hồi sớm.</p>
+    <div class="cards">
+      <div class="card sm-6">
+        <form>
+          <input type="text" placeholder="Họ và tên" required>
+          <input type="email" placeholder="Email" required>
+          <input type="tel" placeholder="Số điện thoại">
+          <textarea rows="5" placeholder="Mô tả nhu cầu: dây chuyền, công suất, yêu cầu kỹ thuật..." required></textarea>
+          <button class="btn primary" type="submit">Gửi yêu cầu</button>
+        </form>
+
+      </div>
+      <div class="card sm-6">
+        <div class="title">TechFlow </div>
+        <p class="muted">Địa chỉ &amp; thông tin sẽ được cập nhật. Nhận dự án toàn quốc, hỗ trợ online/on-site.</p>
+        <p>📧 techflow.tudonghoa@gmail.com<br>📞 0329799336</p>
+        <p class="muted">Giờ làm việc: T2–T7, 8:00–17:30</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+ <div class="container footgrid">
+    <div>
+      <div class="brand">
+        <img src="LogoTechFlow.png" alt="TechFlow Logo" class="logo-img">
+       
+      </div>
+      <p class="muted">Giải pháp tự động hóa – tích hợp     MCU, chế tạo máy &amp; chuyên sâu máy sản xuất frit bán tự động.</p>
+    </div>
+
+    <div>
+      <b>Điều hướng</b>
+      <div><a href="#gioi-thieu">Giới thiệu</a></div>
+      <div><a href="#giai-phap">Giải pháp</a></div>
+      <div><a href="#frit">Máy Frit</a></div>
+      <div><a href="#lien-he">Liên hệ</a></div>
+    </div>
+    <div>
+      <b>Tài nguyên</b>
+      <div><a href="#">Tải tài liệu</a></div>
+      <div><a href="#">Chính sách bảo hành</a></div>
+      <div><a href="#">Điều khoản</a></div>
+    </div>
+  </div>
+<div class="container copyright">
+    © <span id="y"></span> TechFlow - Tất cả quyền được bảo lưu.
+  </div>
+</footer>
+
+
+
+
+
+<script>
+  document.getElementById('y').textContent = new Date().getFullYear();
+</script>
+<script>
+  let lastScroll = 0;
+  const header = document.querySelector("header");
+
+  window.addEventListener("scroll", () => {
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll > lastScroll && currentScroll > 50) {
+      // Cuộn xuống -> ẩn header
+      header.style.transform = "translateY(-100%)";
+    } else {
+      // Cuộn lên -> hiện lại header
+      header.style.transform = "translateY(0)";
+    }
+
+    lastScroll = currentScroll;
+  });
+
+</script>
+
+</body>
+</html>

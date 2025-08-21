@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Các lỗi thường gặp – TechFlow</title>
+
+<style>
+  :root{
+    /* Chủ đạo vàng */
+    --bg: #0b0e14;
+    --bg-soft:#121722;
+    --card:#0f1422;
+    --text:#f8f9fb;
+    --muted:#c7c9d3;
+
+    --brand:#f6c42f;   /* vàng */
+    --brand-2:#ffe27a; /* vàng nhạt */
+    --accent:#ffd24d;
+    --danger:#ff6b6b;
+    --ok:#30d158;
+
+    --radius:16px;
+    --shadow:0 10px 30px rgba(0,0,0,.35);
+    --shadow-soft:0 6px 18px rgba(0,0,0,.25);
+  }
+
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial;
+    color:var(--text);
+    background:radial-gradient(1200px 800px at 10% -10%,rgba(246,196,47,.08),transparent),
+               radial-gradient(1000px 700px at 110% -20%,rgba(255,226,122,.06),transparent),
+               var(--bg);
+    line-height:1.6;
+    padding:24px;
+  }
+
+  header{
+    max-width:1000px;margin:0 auto 24px;
+    padding:22px 22px 18px;
+    background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,0));
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-soft);
+  }
+  h1{margin:0 0 6px 0}
+  .subtitle{color:var(--muted);margin:0}
+
+  .btn{
+    display:inline-block;padding:10px 18px;margin-top:12px;
+    background:linear-gradient(135deg,var(--brand),var(--brand-2));
+    color:#1a1a1a;font-weight:700;border-radius:10px;text-decoration:none;
+    box-shadow:0 6px 18px rgba(246,196,47,.25);
+    transition:transform .2s ease, box-shadow .2s ease;
+  }
+  .btn:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(246,196,47,.35)}
+  .btn:active{transform:translateY(1px) scale(.98)}
+
+  /* Accordion lỗi */
+  .faq{max-width:1000px;margin:0 auto}
+  details{
+    background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.03));
+    border:1px solid rgba(255,255,255,.1);
+    border-radius:14px;
+    padding:14px 16px;
+    margin:12px 0;
+    box-shadow:var(--shadow);
+  }
+  summary{
+    cursor:pointer;list-style:none;display:flex;align-items:center;gap:12px;
+    font-weight:800
+  }
+  summary::-webkit-details-marker{display:none}
+
+  .badge{
+    font-size:12px;font-weight:800;letter-spacing:.3px;
+    padding:4px 8px;border-radius:999px;color:#1a1a1a;
+    background:linear-gradient(135deg,var(--brand),var(--brand-2));
+  }
+  .badge-danger{background:linear-gradient(135deg,#ffb3b3,var(--danger));color:#1a1a1a}
+  .badge-ok{background:linear-gradient(135deg,#8df9b4,var(--ok));color:#0b0e14}
+
+  .content{
+    margin-top:10px;font-size:15px;color:var(--muted)
+  }
+  .content ul{margin:8px 0 0 18px}
+  .callout{
+    margin-top:10px;padding:10px 12px;border-radius:10px;
+    background:rgba(246,196,47,.08);border:1px dashed rgba(246,196,47,.35);
+    color:#ffe9a6
+  }
+  .kv{
+    display:inline-flex;gap:8px;flex-wrap:wrap;margin-top:8px
+  }
+  .kv .chip{
+    border:1px solid rgba(255,255,255,.15);padding:6px 10px;border-radius:999px;
+    font-size:12px;color:#ffe08a;background:rgba(246,196,47,.06)
+  }
+  .content img {
+  max-width: 30%;   /* co theo chiều rộng khung chứa */
+  height: auto;      /* giữ nguyên tỉ lệ */
+  border-radius: 6px; /* bo góc */
+  margin: 8px 0;
+  box-shadow: 0 4px 10px rgba(0,0,0,.15); /* bóng nhẹ */
+  display: block;   /* tránh lệch dòng */
+}
+
+
+</style>
+
+
+</head>
+<body>
+  <header>
+    <h1>⚠️ Các lỗi thường gặp</h1>
+    <p class="subtitle">Tổng hợp lỗi, nguyên nhân và cách khắc phục khi vận hành máy Frit – TechFlow.</p>
+    <a href="indexx.html" class="btn">← Quay lại Trang chính</a>
+  </header>
+
+  <section class="faq">
+
+    <details open>
+      <summary>🟡 Không kết nối được COM <span class="badge">Kết nối</span></summary>
+      <div class="content">
+        <ul>
+           <img src="loicom.jpg" alt="Lỗi COM">
+          <li>Kiểm tra cáp USB, đổi sang cổng khác của PC.</li>
+          <li>Mở <b>Device Manager</b> → Ports (COM & LPT) xem số COM hiển thị.</li>
+          <li>Trong phần mềm chọn đúng số COM, tốc độ Baud khớp (thường 9600).</li>
+          <li>Tắt các phần mềm khác đang chiếm COM (IDE, serial monitor).</li>
+        </ul>
+        <div class="callout">Nếu COM vẫn chưa kết nối được → cài lại driver CH340.</div>
+        <div class="kv"><span class="chip">USB lỏng</span><span class="chip">Sai baud</span><span class="chip">Xung đột cổng</span></div>
+      </div>
+    </details>
+
+    <details>
+      <summary>🔴 Đèn cảm biến không sáng <span class="badge-danger">Phần cứng</span></summary>
+      <div class="content">
+        <ul>
+          <li>Đảm bảo đã bật nguồn, kiểm tra cầu chì và nguồn 24V.</li>
+          <li>Kiểm tra dây tín hiệu: V+, GND, OUT đúng cực và chắc chắn.</li>
+          <li>Điều chỉnh khoảng cách/độ nhạy cảm biến; lau sạch bề mặt.</li>
+          <li>Dùng đồng hồ đo: OUT phải chuyển trạng thái khi có vật.</li>
+        </ul>
+        <div class="callout">Nếu không đổi trạng thái → thay cảm biến hoặc kiểm tra lại module IO.</div>
+      </div>
+    </details>
+
+    <details>
+      <summary>🟡 Nhấn Start nhưng động cơ không chạy <span class="badge">Trình tự</span></summary>
+      <div class="content">
+        <ul>
+           <img src="loimoflie.jpg" alt="Lỗi mở file">
+          <li>Chưa chọn file khuôn → vào “Chương trình tự động” bấm <b>Mở</b> và chọn file.</li>
+          <li>Chưa Home: thực hiện lệnh <b>Home</b> tất cả trục trước khi chạy.</li>
+          <li>Kiểm tra E-Stop, công tắc an toàn, nắp cửa đã đóng.</li>
+          <li>Kiểm tra nguồn Driver Step (24–48V) và tín hiệu ENA/STEP/DIR.</li>
+        </ul>
+        <div class="callout">Trạng thái phần mềm phải là <b>Đã kết nối</b> trước khi Start.</div>
+      </div>
+    </details>
+
+    <details>
+      <summary>🟡 Không tải được file khuôn <span class="badge">Phần mềm</span></summary>
+      <div class="content">
+        <ul>
+          <li>Định dạng không hợp lệ: chỉ nhận <code>.json</code>/<code>.csv</code> theo mẫu.</li>
+          <li>Tên cột/field thiếu: <code>X,Y,Z,Time,Repeat...</code></li>
+          <li>Đường dẫn có ký tự đặc biệt → đổi tên thư mục.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details>
+      <summary>🟡 Vị trí Home sai / lệch tọa độ <span class="badge">Hiệu chuẩn</span></summary>
+      <div class="content">
+        <ul>
+          <li>Kiểm tra công tắc hành trình, hướng DIR, vi bước driver.</li>
+          <li>Hiệu chỉnh lại bước/mm trong cấu hình trục.</li>
+          <li>Chạy lệnh xác minh: đến 0,0,0 → di chuyển +100 → quay lại 0.</li>
+        </ul>
+        <div class="callout">Nếu không quay đúng 0: sai vi bước hoặc tỉ số truyền.</div>
+      </div>
+    </details>
+
+    <details>
+      <summary>🟢 Máy hoạt động bình thường nhưng cảnh báo vẫn sáng <span class="badge-ok">Thông tin</span></summary>
+      <div class="content">
+        <ul>
+          <li>Thông báo nhắc bảo trì định kỳ. Vào <b>System Setting → Maintenance</b> để reset bộ đếm.</li>
+          <li>Kiểm tra log: nếu không có lỗi đỏ, có thể tiếp tục vận hành.</li>
+        </ul>
+      </div>
+    </details>
+
+  </section>
+
+  <script>
+    // Thêm/đổi icon mở/đóng
+    document.querySelectorAll('details').forEach(d=>{
+      d.addEventListener('toggle', ()=>{
+        const s = d.querySelector('summary');
+        if(!s) return;
+        s.dataset.state = d.open ? 'open' : 'closed';
+      });
+    });
+  </script>
+</body>
+</html>
